@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tienda · Señalizaciones Ortega</title>
+<meta name="description" content="Tienda online de señales de tráfico, balizamiento, equipamiento vial y pintura de marcaje de Señalizaciones Ortega.">
+<meta name="theme-color" content="#FFD500">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='10' y='10' width='44' height='44' rx='6' transform='rotate(45 32 32)' fill='%23FFD500' stroke='%23111' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="tienda">
+<a class="skip" href="#main">Saltar al contenido</a>
+<div class="hazard" aria-hidden="true"></div>
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html" aria-label="Señalizaciones Ortega, inicio"><img src="img/logo.png" alt="Señalizaciones Ortega" width="479" height="230"></a>
+    <nav aria-label="Principal">
+      <ul class="menu" id="menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="portfolio.html">Trabajos</a></li>
+        <li><a href="tienda.html" aria-current="page">Tienda</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="nav-tools">
+      <button class="cart-link" type="button" data-open-cart aria-label="Abrir carrito"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span class="badge" data-n="0"></span></button>
+      <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow" style="color:var(--y)">Tienda online</span>
+      <h1>Material de señalización</h1>
+      <p>Señales, balizamiento, equipamiento vial y pintura de marcaje. Pide online o solicita presupuesto para cantidades grandes o fabricaciones a medida.</p>
+    </div>
+    <div class="road-line" aria-hidden="true"></div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="demo-note"><b>Demo</b><span>Catálogo, precios y stock de ejemplo. El carrito funciona, pero aún no hay pasarela de pago ni gestión de pedidos conectada.</span></div>
+
+      <div class="toolbar">
+        <div class="chips" id="chips" role="group" aria-label="Categorías"></div>
+        <div class="field">
+          <input type="search" id="q" placeholder="Buscar producto…" aria-label="Buscar producto">
+          <select id="sort" aria-label="Ordenar">
+            <option value="rel">Destacados</option>
+            <option value="asc">Precio: menor a mayor</option>
+            <option value="desc">Precio: mayor a menor</option>
+            <option value="az">Nombre A–Z</option>
+          </select>
+        </div>
+      </div>
+      <p id="count" style="color:var(--mut);font-weight:600;margin:-10px 0 20px" aria-live="polite"></p>
+      <div class="grid g4" id="grid" style="grid-template-columns:repeat(auto-fill,minmax(235px,1fr))"></div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>¿Pedido grande o a medida?</h2>
+      <div class="acts">
+        <a class="btn dark" href="contacto.html?asunto=presupuesto">Solicitar presupuesto</a>
+        <a class="btn line" href="tel:+34956404111">956 40 41 11</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Carrito -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="cart" aria-label="Carrito de la compra" aria-hidden="true">
+  <header><h2>Tu carrito</h2><button type="button" id="cart-close" aria-label="Cerrar carrito">×</button></header>
+  <div class="cart-items" id="cart-items"></div>
+  <div class="cart-foot" id="cart-foot"></div>
+</aside>
+
+<!-- Ficha de producto -->
+<dialog id="pdlg" aria-label="Ficha de producto">
+  <div class="dlg">
+    <div class="shop-art" id="p-art" style="aspect-ratio:auto;min-height:300px"></div>
+    <div class="body">
+      <button class="x" type="button" aria-label="Cerrar" data-close>×</button>
+      <span class="eyebrow" id="p-cat"></span>
+      <h2 id="p-name" style="font-size:2rem;text-transform:none;font-family:var(--body);line-height:1.15"></h2>
+      <p id="p-desc"></p>
+      <ul class="ticks" id="p-specs" style="margin:0 0 20px"></ul>
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px">
+        <div class="price" id="p-price"></div>
+        <span class="stock" id="p-stock"></span>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+        <div class="qty" id="p-qty"><button type="button" data-d="-1" aria-label="Menos">−</button><span id="p-q">1</span><button type="button" data-d="1" aria-label="Más">+</button></div>
+        <button class="btn" type="button" id="p-add">Añadir al carrito</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- Aviso checkout demo -->
+<dialog id="cdlg" aria-label="Pedido de demostración">
+  <div class="body" style="padding:34px 30px;position:relative">
+    <button class="x" type="button" aria-label="Cerrar" data-close style="position:absolute;right:14px;top:14px;width:40px;height:40px;border-radius:50%;border:0;background:var(--k);color:#fff;font-size:1.3rem;cursor:pointer">×</button>
+    <span class="eyebrow">Modo demostración</span>
+    <h2 style="font-size:2.2rem">Aquí empezaría el pago</h2>
+    <p>En la versión final, este botón llevaría al pago seguro (tarjeta, Bizum, transferencia…) y se encargaría de:</p>
+    <ul class="ticks">
+      <li>Cobrar con pasarela de pago (Stripe o TPV bancario).</li>
+      <li>Registrar el pedido y avisar por email al cliente y a la empresa.</li>
+      <li>Descontar el stock y generar albarán y factura.</li>
+      <li>Hacer seguimiento del estado: preparando, enviado, entregado.</li>
+    </ul>
+    <p style="color:var(--mut);font-size:.92rem" id="c-sum"></p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <button class="btn" type="button" data-close>Entendido</button>
+      <button class="btn line" type="button" id="c-quote">Solicitar presupuesto con este carrito</button>
+    </div>
+  </div>
+</dialog>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="fgrid">
+      <div>
+        <img class="logo" src="img/logo.png" alt="Señalizaciones Ortega" width="479" height="230">
+        <p>Señalización vial desde 1997. Trabajando por tu seguridad.</p>
+      </div>
+      <div>
+        <h4>Web</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="portfolio.html">Trabajos</a></li>
+          <li><a href="tienda.html">Tienda</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li>Calle Progreso, 26<br>Pol. Ind. Pelagatos<br>11130 Chiclana de la Frontera (Cádiz)</li>
+          <li><a href="tel:+34956404111">956 40 41 11</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Información</h4>
+        <ul>
+          <li><a href="https://xn--sealizacionesortega-w3b.es/aviso-legal/" rel="noopener">Aviso legal</a></li>
+          <li><a href="https://xn--sealizacionesortega-w3b.es/politica-de-privacidad/" rel="noopener">Política de privacidad</a></li>
+          <li><a href="https://xn--sealizacionesortega-w3b.es/politica-de-cookies/" rel="noopener">Política de cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© <span data-year>2026</span> Señalizaciones Ortega, S.L.</span>
+      <span>Demo de rediseño · contenido provisional</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/art.js"></script>
+<script src="js/products.js"></script>
+<script src="js/main.js"></script>
+<script src="js/tienda.js"></script>
+</body>
+</html>
